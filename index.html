@@ -3,28 +3,395 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Catálogo de Plugins Clásico</title>
+ <title>Catálogo de Plugins</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/ms-sans-serif');
 
-    <link rel="stylesheet" href="styles.css">
+        /* Estilo general de aplicación antigua (ligeramente modernizado) */
+        body {
+            font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+            font-size: 11px;
+            margin: 0;
+            padding: 0;
+            background-color: #C0C0C0; /* Color "Silver" clásico de Windows */
+            color: #000;
+        }
+
+        /* Header centrado y con estilo de barra de herramientas */
+        header {
+            background-color: #C0C0C0;
+            padding: 20px 15px;
+            border-bottom: 2px solid #fff; /* Borde superior y blanco para dar relieve */
+            border-top: 2px solid #808080;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el título y la barra de búsqueda */
+        }
+
+        h1 {
+            margin: 0 0 15px 0;
+            font-size: 24px; /* Tamaño de título agrandado */
+            font-weight: bold;
+            color: #000;
+            text-shadow: 1px 1px 0 #fff;
+        }
+
+        #searchInput {
+            background-color: #fff;
+            border: 1px solid #808080;
+            padding: 8px 12px; /* Padding más grande */
+            font-size: 12px; /* Fuente ligeramente más grande */
+            font-family: inherit;
+            width: 380px; /* Ancho agrandado */
+            border-radius: 0; /* Bordes sin redondear */
+            box-shadow: inset 1px 1px 2px #dfdfdf;
+        }
+        
+        #searchInput:focus {
+            outline: 1px dotted #000;
+            outline-offset: -2px;
+        }
+
+        /* Contenedor principal con más espacio */
+        main {
+            padding: 20px;
+            background-color: #C0C0C0;
+        }
+
+        /* Lista de plugins con bordes más sutiles y más espacio */
+        #pluginListContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* Más aire entre elementos */
+            border: 2px solid;
+            border-color: #fff #808080 #808080 #fff; /* Efecto 3D */
+            background-color: #D6D6D6;
+            padding: 8px;
+            border-radius: 0; /* Bordes sin redondear */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.15); /* Sombra sutil para dar profundidad */
+        }
+
+        .plugin-container {
+            display: flex;
+            align-items: center;
+            padding: 10px; /* Padding interno más generoso */
+            background-color: #fff;
+            cursor: pointer;
+            border: 1px solid transparent;
+            /* Transición eliminada para un hover instantáneo */
+        }
+
+        .plugin-container:hover {
+            background-color: #EFEFEF;
+            border-color: #A0A0A0;
+            transform: translateY(-2px); /* Levanta ligeramente el elemento */
+            box-shadow: 1px 2px 4px rgba(0,0,0,0.1); /* Sombra en el hover */
+        }
+
+        .plugin-image {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 1px solid #A0A0A0;
+        }
+
+        .plugin-info {
+            flex-grow: 1;
+        }
+
+        .plugin-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .plugin-info p {
+            margin: 0;
+            font-size: 11px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Botón de descarga con relieve 3D más sutil */
+        .download-button {
+            background-color: #00AA00; /* Verde */
+            color: #fff; /* Texto blanco para mejor contraste */
+            border: 1px solid;
+            border-color: #fff #005500 #005500 #fff; /* Efecto 3D con verdes */
+            padding: 6px 14px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11px;
+            cursor: pointer;
+            /* Transición eliminada para un hover instantáneo */
+            border-radius: 0; /* Bordes sin redondear */
+        }
+
+        .download-button:hover {
+            border-color: #005500 #fff #fff #005500;
+        }
+
+        .download-button:active {
+            border-color: #005500 #fff #fff #005500;
+            padding: 7px 13px 5px 15px; /* Efecto de hundimiento */
+        }
+
+        /* Modal de detalles estilo ventana (ligeramente modernizado) */
+        #pluginDetail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #detailContent {
+            background-color: #C0C0C0;
+            border: 2px solid;
+            border-color: #fff #000 #000 #fff; /* Borde de ventana clásico */
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 25px;
+            position: relative;
+            border-radius: 0; /* Bordes sin redondear */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4); /* Sombra más prominente para la modal */
+        }
+
+        #detailContent h2 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #000080;
+            border-bottom: 1px solid #808080;
+            padding-bottom: 10px;
+        }
+        
+        /* Estilo específico para la imagen principal del modal */
+        #detailContent > img:first-child {
+            display: block; /* Permite centrar la imagen */
+            max-width: 600px; /* Ancho máximo */
+            max-height: 400px; /* Alto máximo */
+            width: auto; /* Ajusta el ancho automáticamente */
+            height: auto; /* Ajusta la altura automáticamente */
+            margin: 0 auto 15px auto; /* Centra la imagen y añade margen inferior */
+            border: 1px solid #808080;
+            object-fit: contain; /* Asegura que la imagen quepa sin recortarse ni deformarse */
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .screenshot-grid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #808080; /* Añadido borde para consistencia */
+        }
+
+        /* Botón de cerrar ventana */
+        #closeDetail {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #CC0000; /* Rojo */
+            color: #fff;
+            border: 1px solid;
+            border-color: #fff #800000 #800000 #fff; /* Efecto 3D con rojos */
+            padding: 4px 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 0; /* Bordes sin redondear */
+        }
+        
+        #closeDetail:active {
+            border-color: #800000 #fff #fff #800000;
+            padding: 5px 7px 3px 9px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Mensaje de no resultados */
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            background-color: #fff;
+            border-radius: 0; /* Bordes sin redondear */
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Catálogo de Plugins v1.0</h1>
+        <input type="text" id="searchInput" placeholder="Buscar plugins...">
+    </header>
 
-     <header>
- <h1>💾 Catálogo Simple de Plugins</h1>
-        <input type="text" id="searchInput" placeholder="Buscar por nombre o descripción...">
-     </header>
-
-     <main id="pluginListContainer">
-     </main>
+    <main id="pluginListContainer">
+        <!-- Los plugins se cargarán aquí dinámicamente -->
+    </main>
 
     <section id="pluginDetail" class="hidden">
-        <button id="closeDetail">❌ Cerrar</button>
-     <div id="detailContent">
-     </div>
-     </section>
+        <div id="detailContent">
+            <!-- El contenido detallado se cargará aquí dinámicamente -->
+        </div>
+        <button id="closeDetail">X</button>
+    </section>
 
-     <script src="script.js"></script>
+    <script>
+        // Datos de los Plugins
+        const pluginsData = [
+            {
+                id: 1,
+                name: "SEO Pro",
+                description: "Optimiza automáticamente tu contenido para motores de búsqueda...",
+                shortDescription: "Optimización SEO avanzada.",
+                image: "https://i.imgur.com/HsK2IDm.jpeg",
+                fullImage: "https://i.imgur.com/ZJxJrA3.jpeg",
+                screenshots: ["https://via.placeholder.com/250x150?text=SEO+Dashboard", "https://via.placeholder.com/250x150?text=Analisis+Keywords"],
+                moreInfo: "Este plugin incluye análisis de palabras clave, mapas de sitio XML automáticos y sugerencias de contenido para mejorar tu ranking.",
+                downloadLink: "https://download2390.mediafire.com/qsuxpqhxioogWpjHOsYQ_OPeUQ-fC1Jd8Kc1rnyHCHPqALKyPGQmGhb7sGQC-0A-DUCyPFg8IqRyxA4H8OMxeLCE6WjLlMTY0F1c09nnBanzeRMXxdQyHbkMpuOsWOc1oKfBBKRsEhsDXiB7oCYgNDrw-QTqjw5CuTHNB_1InkiN/5i3uq8676qqigm7/Gta+San+Andreas+%5BLimpio%5D+-+TheFenix010.rar",
+                author: "The Code Master" 
+            },
+            {
+                id: 2,
+                name: "Formulario Contacto Fácil",
+                description: "Crea formularios de contacto sencillos y seguros sin escribir código.",
+                shortDescription: "Constructor de formularios simple.",
+                image: "https://via.placeholder.com/100x100?text=FORM",
+                fullImage: "https://via.placeholder.com/400x200?text=Form+Easy+Banner",
+                screenshots: ["https://via.placeholder.com/250x150?text=Editor+Campos", "https://via.placeholder.com/250x150?text=Configuracion", "https://via.placeholder.com/250x150?text=Vista+Final"],
+                moreInfo: "Soporta múltiples campos, integración anti-spam (reCAPTCHA) y notificaciones de email personalizables.",
+                downloadLink: "plugins/contacto-facil.zip",
+                author: "Web Dev Solutions" 
+            },
+            {
+                id: 3,
+                name: "Analytics Dashboard",
+                description: "Visualiza datos de tu sitio web con gráficos interactivos y reportes detallados.",
+                shortDescription: "Panel de análisis de datos.",
+                image: "https://via.placeholder.com/100x100?text=ANALYTICS",
+                fullImage: "https://via.placeholder.com/400x200?text=Analytics+Dashboard",
+                screenshots: ["https://via.placeholder.com/250x150?text=Dashboard+Principal", "https://via.placeholder.com/250x150?text=Reportes+Detallados"],
+                moreInfo: "Seguimiento en tiempo real, conversiones, análisis de fuentes de tráfico y mucho más.",
+                downloadLink: "plugins/analytics-dashboard.zip",
+                author: "Data Insights Co." 
+            },
+            {
+                id: 4,
+                name: "Cache Master",
+                description: "Acelera tu sitio con un sistema de caché avanzado y configurable.",
+                shortDescription: "Sistema de caché avanzado.",
+                image: "https://via.placeholder.com/100x100?text=CACHE",
+                fullImage: "https://via.placeholder.com/400x200?text=Cache+Master",
+                screenshots: ["https://via.placeholder.com/250x150?text=Configuracion+Cache", "https://via.placeholder.com/250x150?text=Estadisticas+Rendimiento"],
+                moreInfo: "Caché de páginas, objetos y base de datos. Configuración avanzada para expertos.",
+                downloadLink: "plugins/cache-master.zip",
+                author: "Speed Boost Team" 
+            }
+        ];
+
+        const listContainer = document.getElementById('pluginListContainer');
+        const searchInput = document.getElementById('searchInput');
+        const detailSection = document.getElementById('pluginDetail');
+        const detailContent = document.getElementById('detailContent');
+        const closeButton = document.getElementById('closeDetail');
+
+        // Función para crear el contenedor de un plugin en la lista
+        function createPluginContainer(plugin) {
+            const container = document.createElement('div');
+            container.className = 'plugin-container';
+            container.setAttribute('data-id', plugin.id);
+
+            container.innerHTML = `
+                <img src="${plugin.image}" alt="${plugin.name} icono" class="plugin-image">
+                <div class="plugin-info">
+                    <h3>${plugin.name}</h3>
+                    <p><strong>Autor:</strong> ${plugin.author}</p>
+                    <p>${plugin.shortDescription}</p>
+                </div>
+                <a href="${plugin.downloadLink}" download class="download-button" onclick="event.stopPropagation();">
+                    Descargar
+                </a>
+            `;
+
+            // Añadir el evento de clic para mostrar los detalles
+            container.addEventListener('click', () => showPluginDetail(plugin.id));
+
+            return container;
+        }
+
+        // Función para renderizar la lista completa (o filtrada)
+        function renderPlugins(pluginsToRender) {
+            listContainer.innerHTML = ''; // Limpiar la lista actual
+            
+            if (pluginsToRender.length === 0) {
+                listContainer.innerHTML = '<div class="no-results">No se encontraron plugins que coincidan con su búsqueda.</div>';
+                return;
+            }
+            
+            pluginsToRender.forEach(plugin => {
+                listContainer.appendChild(createPluginContainer(plugin));
+            });
+        }
+
+        // Función para mostrar la vista detallada
+        function showPluginDetail(id) {
+            const plugin = pluginsData.find(p => p.id === id);
+
+            if (!plugin) return;
+
+            const screenshotsHtml = plugin.screenshots.map(src => `<img src="${src}" alt="Captura de ${plugin.name}">`).join('');
+
+            detailContent.innerHTML = `
+                <img src="${plugin.fullImage}" alt="${plugin.name} Banner">
+                <h2>${plugin.name}</h2>
+                <p><strong>Autor:</strong> ${plugin.author}</p>
+                <a href="${plugin.downloadLink}" download class="download-button" style="display: block; margin: 15px auto; width: fit-content;">
+                    Descargar ${plugin.name} Ahora
+                </a>
+                <p><strong>Descripción completa:</strong> ${plugin.description}</p>
+                <p>${plugin.moreInfo}</p>
+                <h3>Capturas de Pantalla:</h3>
+                <div class="screenshot-grid">${screenshotsHtml}</div>
+            `;
+
+            detailSection.classList.remove('hidden');
+        }
+
+        // Función de búsqueda (Filtro)
+        function filterPlugins() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredPlugins = pluginsData.filter(plugin => {
+                return plugin.name.toLowerCase().includes(searchTerm) || 
+                       plugin.shortDescription.toLowerCase().includes(searchTerm) ||
+                       plugin.author.toLowerCase().includes(searchTerm);
+            });
+            renderPlugins(filteredPlugins);
+        }
+
+        // Event Listeners y Arranque Inicial
+        searchInput.addEventListener('keyup', filterPlugins);
+        searchInput.addEventListener('change', filterPlugins);
+
+        closeButton.addEventListener('click', () => {
+            detailSection.classList.add('hidden');
+        });
+
+        renderPlugins(pluginsData);
+    </script>
 </body>
 </html>
