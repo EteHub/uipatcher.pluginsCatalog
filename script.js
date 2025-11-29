@@ -9,7 +9,7 @@ const pluginsData = [
 fullImage: "https://i.imgur.com/ZJxJrA3.jpeg",
  screenshots: ["https://via.placeholder.com/250x150?text=SEO+Dashboard", "https://via.placeholder.com/250x150?text=Analisis+Keywords"],
  moreInfo: "Este plugin incluye análisis de palabras clave, mapas de sitio XML automáticos y sugerencias de contenido para mejorar tu ranking.",
- downloadLink: "https://download2390.mediafire.com/qsuxpqhxioogWpjHOsYQ_OPeUQ-fC1Jd8Kc1rnyHCHPqALKyPGQmGhb7sGQC-0A-DUCyPFg8IqRyxA4H8OMxeLCE6WjLlMTY0F1c09nnBanzeRMXxdQyHbkMpuOsWOc1oKfBBKRsEhsDXiB7oCYgNDrw-QTqjw5CuTHNB_1InkiM/5i3uq8676qqigm7/Gta+San+Andreas+%5BLimpio%5D+-+TheFenix010.rar"
+ downloadLink: "https://release-assets.githubusercontent.com/github-production-release-asset/11993845/ee58105e-1afc-4328-8457-05746c78e961?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-11-27T02%3A53%3A33Z&rscd=attachment%3B+filename%3Dlessmsi.2.10.6.nupkg&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-11-27T01%3A53%3A33Z&ske=2025-11-27T02%3A53%3A33Z&sks=b&skv=2018-11-09&sig=aF4m6KPmKxQvslsLzJtyGuVwjF7UGw%2BKqI1NGif3rCE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc2NDIwOTU5MiwibmJmIjoxNzY0MjA5MjkyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.7rge9dG05BtK2D7N8wmPf9QmBp_xtrmv_afG4ByLEsk&response-content-disposition=attachment%3B%20filename%3Dlessmsi.2.10.6.nupkg&response-content-type=application%2Foctet-stream"
  },
  {
  id: 2,
@@ -113,4 +113,5 @@ closeButton.addEventListener('click', () => {
 });
 
 // Cargar todos los plugins al iniciar la página
+
 renderPlugins(pluginsData);
