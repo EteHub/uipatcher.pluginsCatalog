@@ -2,19 +2,19 @@
 const pluginsData = [
  {
  id: 1,
- name: "SEO Pro",
- description: "Optimiza automáticamente tu contenido para motores de búsqueda...",
- shortDescription: "Optimización SEO avanzada.",
+ name: "Plugin Test",
+ description: "test and more tests",
+ shortDescription: "test",
  image: "https://i.imgur.com/HsK2IDm.jpeg",
 fullImage: "https://i.imgur.com/ZJxJrA3.jpeg",
  screenshots: ["https://via.placeholder.com/250x150?text=SEO+Dashboard", "https://via.placeholder.com/250x150?text=Analisis+Keywords"],
  moreInfo: "Este plugin incluye análisis de palabras clave, mapas de sitio XML automáticos y sugerencias de contenido para mejorar tu ranking.",
- downloadLink: "https://release-assets.githubusercontent.com/github-production-release-asset/11993845/ee58105e-1afc-4328-8457-05746c78e961?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-11-27T02%3A53%3A33Z&rscd=attachment%3B+filename%3Dlessmsi.2.10.6.nupkg&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-11-27T01%3A53%3A33Z&ske=2025-11-27T02%3A53%3A33Z&sks=b&skv=2018-11-09&sig=aF4m6KPmKxQvslsLzJtyGuVwjF7UGw%2BKqI1NGif3rCE%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc2NDIwOTU5MiwibmJmIjoxNzY0MjA5MjkyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.7rge9dG05BtK2D7N8wmPf9QmBp_xtrmv_afG4ByLEsk&response-content-disposition=attachment%3B%20filename%3Dlessmsi.2.10.6.nupkg&response-content-type=application%2Foctet-stream"
+ downloadLink: "https://download.visualstudio.microsoft.com/download/pr/9565895b-35a6-434b-a881-11a6f4beec76/EE84FED2552E018E854D4CD2496DF4DD516F30733A27901167B8A9882119E57C/VC_redist.x64.exe"
  },
  {
  id: 2,
- name: "Formulario Contacto Fácil",
- description: "Crea formularios de contacto sencillos y seguros sin escribir código.",
+ name: "Formulario",
+ description: "Crea formularios",
  shortDescription: "Constructor de formularios simple.",
  image: "https://via.placeholder.com/100x100?text=FORM",
  fullImage: "https://via.placeholder.com/400x200?text=Form+Easy+Banner",
@@ -115,3 +115,4 @@ closeButton.addEventListener('click', () => {
 // Cargar todos los plugins al iniciar la página
 
 renderPlugins(pluginsData);
+
