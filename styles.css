@@ -1,0 +1,252 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 30px;
+    background-color: #f0f0f0; 
+    color: #000;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+h1 {
+    color: #0056b3; 
+}
+
+#searchInput {
+    padding: 8px;
+    width: 80%;
+    max-width: 500px;
+    border: 1px solid #999;
+    border-radius: 0; 
+    font-size: 14px;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#pluginListContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Aumento el min-width */
+    gap: 15px;
+    padding: 0;
+}
+
+/* ------------------------------------------------ */
+/* ESTILO DE LA TARJETA (plugin-container) CORREGIDO */
+/* ------------------------------------------------ */
+
+.plugin-container {
+    background-color: #ffffff;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+    
+    /* Configuración clave para la disposición horizontal */
+    display: flex; 
+    align-items: flex-start; /* Alinea la imagen y el texto arriba */
+    
+    cursor: pointer;
+    transition: background-color 0.1s;
+    overflow: hidden;
+    min-height: 100px; /* Altura mínima para asegurar el espacio */
+}
+
+.plugin-container:hover {
+    background-color: #e6e6e6; 
+}
+
+/* La imagen va a la izquierda y es de tamaño fijo */
+.plugin-image {
+    width: 100px; /* Tamaño fijo para la imagen */
+    height: 100px; /* Tamaño fijo para la imagen */
+    margin-top: 30px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-right: 1px solid #ccc; 
+}
+
+/* El contenedor de información usa el espacio restante */
+.plugin-info {
+    padding: 10px;
+    flex-grow: 1; /* Permite que la información ocupe el espacio restante */
+}
+
+.plugin-info h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.plugin-info p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* ------------------------------------------------ */
+/* BOTONES Y MODAL (Sin cambios funcionales mayores) */
+/* ------------------------------------------------ */
+
+.download-button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 5px;
+    background-color: #5cb85c; 
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    border: 1px solid #4cae4c;
+    cursor: pointer;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.download-button:hover {
+    background-color: #4cae4c; 
+}
+
+.primary-button {
+    font-size: 1.1em;
+    padding: 10px 18px;
+    margin-bottom: 15px;
+    border: 1px solid #0056b3;
+    background-color: #007bff;
+}
+
+.primary-button:hover {
+    background-color: #0056b3;
+}
+
+#pluginDetail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#detailContent {
+    background-color: #fff;
+    padding: 20px;
+    border: 3px solid #007bff;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    width: 95%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#pluginDetail img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.screenshot-grid img {
+    width: 100%;
+    height: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#closeDetail {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #999;
+    border-radius: 0;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1001;
+}
+
+#closeDetail:hover {
+    background-color: #ddd;
+}
+
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD (Ajustados) --- */
+
+@media (max-width: 768px) {
+    /* Ajustes generales */
+    body {
+        padding: 15px;
+    }
+
+    /* En pantallas medianas y grandes, mantiene el diseño horizontal. 
+       Solo cambiamos a pila vertical en pantallas pequeñas. */
+    #pluginListContainer {
+        grid-template-columns: 1fr; /* Una sola columna para mejor visualización de tarjetas horizontales */
+    }
+
+    /* Mantenemos el diseño horizontal de la tarjeta en pantallas medianas */
+
+    /* Modal de Detalle (para móviles) */
+    #detailContent {
+        padding: 15px;
+        width: 100%;
+        max-width: initial;
+        height: 100vh;
+        max-height: initial; 
+        border: none;
+        box-shadow: none;
+    }
+    
+    #closeDetail {
+        top: 5px;
+        right: 5px;
+        padding: 4px 8px;
+        font-size: 0.9em;
+    }
+
+    .screenshot-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* Punto de quiebre final para móviles muy pequeños (menor de 480px) */
+@media (max-width: 480px) {
+    /* Aquí forzamos el diseño de columna (imagen arriba, texto abajo) */
+    .plugin-container {
+        flex-direction: column;
+        text-align: center;
+        min-height: initial; 
+    }
+
+    .plugin-image {
+        width: 100%; /* La imagen ocupa todo el ancho */
+        height: 120px;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    /* Centramos el botón de descarga en el modo columna */
+    .download-button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+    }
+}
