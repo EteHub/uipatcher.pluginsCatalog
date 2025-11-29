@@ -2,7 +2,7 @@
 const pluginsData = [
  {
  id: 1,
- name: "Plugin Test",
+ name: "Plugin Tests",
  description: "test and more tests",
  shortDescription: "test",
  image: "https://i.imgur.com/HsK2IDm.jpeg",
@@ -115,4 +115,5 @@ closeButton.addEventListener('click', () => {
 // Cargar todos los plugins al iniciar la página
 
 renderPlugins(pluginsData);
+
 
